@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYN Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="auth-view">
+        <div class="auth-form-wrapper">
+            <div class="auth-header">
+                <h1 class="logo">ZYN</h1>
+                <p id="form-title">Acesse sua conta</p>
+            </div>
+            <form id="auth-form">
+                <div id="username-field" class="input-group hidden">
+                    <label for="username">Nome de Usuário</label>
+                    <input type="text" id="username" placeholder="Seu nome de usuário único">
+                </div>
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" required placeholder="seu@email.com">
+                </div>
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submit-button">Entrar</button>
+            </form>
+            <div class="auth-toggle">
+                <p>Não tem uma conta? <a href="#" id="toggle-to-register">Cadastre-se</a></p>
+                <p class="hidden">Já tem uma conta? <a href="#" id="toggle-to-login">Faça login</a></p>
+            </div>
+            <p id="error-message" class="error-message"></p>
+        </div>
+    </div>
+
+    <div id="dashboard-view" class="hidden">
+        <header class="dashboard-header">
+            <h1 class="logo-small">ZYN</h1>
+            <div class="user-info">
+                <span id="welcome-message">Olá, Usuário</span>
+                <button id="logout-button" class="btn-logout">Sair</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <section class="balance-card">
+                <h2>Seu Saldo</h2>
+                <p class="balance-amount"><span id="balance">0.00</span> ZYN</p>
+            </section>
+
+            <section class="actions-container">
+                <button class="btn btn-action" id="send-money-btn">
+                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.68-.29-1.4.2-1.4.92V19.5c0 .72.71 1.21 1.4.9z"></path></svg>
+                    Enviar
+                </button>
+                <button class="btn btn-action" id="receive-money-btn">
+                     <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 6h16v2H4V6zm0 12v-6h16v6H4z"></path></svg>
+                    Receber
+                </button>
+            </section>
+
+            <section class="transactions-history">
+                <h3>Histórico de Transações</h3>
+                <div id="transactions-list">
+                    <p class="no-transactions">Nenhuma transação ainda.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="send-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-send-modal">&times;</span>
+            <h2>Enviar ZYN</h2>
+            <form id="send-form">
+                <div class="input-group">
+                    <label for="recipient">Enviar para (Nome de usuário ou Chave)</label>
+                    <input type="text" id="recipient" placeholder="username ou chave" required>
+                </div>
+                <div class="input-group">
+                    <label for="amount">Valor (ZYN)</label>
+                    <input type="number" id="amount" step="0.01" min="0.01" placeholder="0.00" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirmar Envio</button>
+                <p id="send-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="receive-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-receive-modal">&times;</span>
+            <h2>Receber ZYN</h2>
+            <p>Compartilhe seu QR Code ou sua chave para receber.</p>
+            <div id="qrcode-container" class="qrcode"></div>
+            <div class="input-group">
+                <label>Sua Chave ZYN</label>
+                <input type="text" id="user-key" readonly>
+                <button id="copy-key-btn" class="btn-copy">Copiar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/qrcode.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
